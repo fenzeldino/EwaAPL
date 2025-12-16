@@ -2,7 +2,7 @@
 </script>
 <template>
     <header>
-    <img src="/public/photos/Christmas-Logo-by-Acongraphic-60-580x386-removebg-preview.png"></img>
+    <img src="/photos/Christmas-Logo-by-Acongraphic-60-580x386-removebg-preview.png"></img>
     <h1>Weihnachstsshop</h1>
     </header>
 </template>
