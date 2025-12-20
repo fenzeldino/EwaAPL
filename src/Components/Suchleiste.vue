@@ -1,22 +1,22 @@
-<script setup>
-    import {ref,onMounted } from 'vue';
-const geschenke = ref([]);
-onMounted(() => {
-    fetch("api/ewa/g13/P1/api/test_json.php")
-            .then(res => res.json())
-            .then(data =>{
-            geschenke.value = data;
+    <script setup>
+        import {onMounted, ref,computed} from 'vue';
+        import { useGeschenke } from '../composables/Geschenke.js';
 
-    })
-    .catch(error => console.error("Fehler:",error));
-});
+        const { geschenke, load } = useGeschenke();
+        const query = ref(''); //Suchbegriff des nutzers
+
+        const gefilterteGeschenke = computed(() => {
+        return geschenke.value.filter(g =>
+        g.Produkttitel.toLowerCase().includes(query.value.toLowerCase())
+    )
+    });
+
+
 </script> 
 <template>
     <div class="suchleiste">    
-        <input type="text" v-model="suchBegriff"placeholder="Suche..."/>
-        <ul>
-            <li v-for="item in geschenke" :key="item.ProduktID">{{ item.Produkttitel }}</li>
-        </ul>
+        <input type="text" v-model="query" placeholder="Suche..."/>
+        
         <button @click="onSearch" aria-label="Suchen">
 🔍
 </button>
